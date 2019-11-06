@@ -11,7 +11,7 @@ node ('master') {
 
     stage('Build') {
             withMaven(maven: 'Maven 3') {
-                sh 'mvn -B -DskipTests clean install'
+                sh 'mvn -B -Dmaven.test.skip=true clean install'
                 sh 'export app=$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)'
                 sh 'export ver=$( mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout )'
                 sh "echo $app"
