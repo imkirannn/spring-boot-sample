@@ -22,10 +22,10 @@ node ('master') {
             myapp = docker.build registry + "/$app" + ":$ver"
 
             }
-        }
 
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
         app.push()
         }
     }
+}
