@@ -18,7 +18,7 @@ node ('master') {
             }
         }
         stage('Image') {
-            #app = docker.build("imkirann/cp-minds/spring-boot-sample:2.0.2")
+            /* app = docker.build("imkirann/cp-minds/spring-boot-sample:2.0.2") */
             myapp = docker.build registry + "/$app" + ":$ver"
 
             }
