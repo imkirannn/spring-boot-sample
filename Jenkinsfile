@@ -14,6 +14,8 @@ node ('master') {
                 sh 'mvn -B -DskipTests clean install'
                 sh 'export app=$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)'
                 sh 'export ver=$( mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout )'
+                sh "echo $app"
+                sh "echo $ver"
             }
         }
         stage('Image') {
