@@ -1,7 +1,7 @@
 node ('master') {
     withEnv(['registry=imkirann/cp-minds',
-               'registryCredential=docker-hub-credentials',
-               'dockerImage = '''])
+               'registryCredential=docker-hub-credentials'
+               ])
     }
     def myapp
 
