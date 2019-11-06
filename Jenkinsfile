@@ -2,7 +2,6 @@ node ('master') {
     withEnv(['registry=imkirann/cp-minds',
                'registryCredential=docker-hub-credentials'
                ])
-    }
     def myapp
 
     stage('Clone repository') {
