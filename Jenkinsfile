@@ -19,7 +19,7 @@ node ('master') {
             withMaven(maven: 'Maven 3') {
 		sh "echo im here in sh of mvn, $app is $registry is ${ver} is"
                 sh '''#!/bin/bash
-   		 echo "i'm here in sh of mvn, $app is $registry is $ver is" 
+   		 echo "immmm here in sh of mvn, ${app} is $registry is $ver is" 
                 mvn -B -Dmaven.test.skip=true clean install
                  echo "app is $app"
                  echo "deploying with version $ver"
