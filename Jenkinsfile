@@ -1,4 +1,7 @@
 node ('master') {
+    withEnv(['registry=imkirann/cp-minds',
+               'registryCredential=docker-hub-credentials'
+               ]) {
     def myapp
 
     stage('Clone repository') {
@@ -16,8 +19,9 @@ node ('master') {
                  '''
             }
         }
-     // stage('Image') {
-     //       myapp = docker.build registry + /"$app" + ":$ver"
-     //       }
+      stage('Image') {
+            myapp = docker.build registry + /"$app" + ":$ver"
+           }
 
+ }
 }
