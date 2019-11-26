@@ -12,7 +12,7 @@ node ('master') {
 	app = readMavenPom().getArtifactId()
     	ver = readMavenPom().getVersion()
         echo "IMAGE: ${app}"
-    echo "VERSION: ${ver}"
+        echo "VERSION: ${ver}"
      }
      stage('Build') {
             withMaven(maven: 'Maven 3') {
@@ -23,8 +23,5 @@ node ('master') {
                  '''
             }
         }
-      stage('Image') {
-            myapp = docker.build registry + // + "$app" + ":$ver"
-           }
  }
 }
