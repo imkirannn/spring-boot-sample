@@ -16,8 +16,8 @@ node ('master') {
                  '''
             }
         }
-      stage('Image') {
-            myapp = docker.build registry + /"$app" + ":$ver"
-            }
+     // stage('Image') {
+     //       myapp = docker.build registry + /"$app" + ":$ver"
+     //       }
 
 }
