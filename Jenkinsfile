@@ -22,6 +22,4 @@ node ('master') {
             myapp = docker.build registry + /"$app" + ":$ver"
 
             }
-
 }
-
