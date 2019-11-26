@@ -48,11 +48,12 @@ node ('Remote') {
 
  }
  stage('Run app') {
-        sh '''#!/bin/bash
-        if [[ $(docker inspect -f '{{.State.Running}}' $app) == 'true' ]];then
-        	docker rm -f $app
+        echo "app is ${app} and version here is ${ver}"
+        sh '''#!/bin/bash 
+        if [[ $(docker inspect -f '{{.State.Running}}' ${app}) == 'true' ]];then
+        	docker rm -f ${app}
 	fi;
-	docker run -ti -d --name $app -p 8080:8080  $registry/$app:${ver}
+	docker run -ti -d --name ${app} -p 8080:8080  ${registry}/${app}:${ver}
         '''      
 }
 }
