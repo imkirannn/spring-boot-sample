@@ -26,10 +26,10 @@ node ('master') {
 
             }
 
-    stage('Push image') {
+/*    stage('Push image') {
         docker.withRegistry( "https://registry.hub.docker.com", registryCredential ) {
         myapp.push()
         }
-    }
+    } */
    }
 }
