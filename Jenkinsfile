@@ -35,3 +35,15 @@ node ('master') {
 
  }
 }
+/* Here logic comes for 
+   deployment on app node
+   added as a slave in jenkins
+/*
+node ('Remote') {
+ stage('Pull image') {
+      echo "Pulling image: ${myapp}"
+      myapp.pull() 
+
+
+ }
+}
