@@ -1,8 +1,9 @@
+def myapp
 node ('master') {
     withEnv(['registry=imkirann',
                'registryCredential=docker-hub-credentials'
                ]) {
-    def myapp
+//    def myapp
 
     stage('Clone repository') {
 
