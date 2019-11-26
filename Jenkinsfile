@@ -17,7 +17,8 @@ node ('master') {
      }
      stage('Build') {
             withMaven(maven: 'Maven 3') {
-                sh '''#!/bin/bash 
+                sh '''#!/bin/bash
+   		 echo "i'm here in sh of mvn, $app is $registry is $ver is" 
                 mvn -B -Dmaven.test.skip=true clean install
                  echo "app is $app"
                  echo "deploying with version $ver"
