@@ -53,10 +53,11 @@ node ('Remote') {
         echo "app is ${app} and version here is ${ver}"
         sh """#!/bin/bash 
 	echo "i'm here in if, $app is  $ver is"
-        if [[ `docker inspect -f '{{.State.Running}}' "$app"` == 'true' ]];then 
+        echo "end"
+        """
+        sh "if [[ `docker inspect -f '{{.State.Running}}' "$app"` == 'true' ]];then "
           
-	echo "hii i came to IF end::::::::"
-        fi
-        """ 
+	sh "echo hii i came to IF end::::::::"
+        sh "fi"
 }
 }
