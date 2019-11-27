@@ -52,7 +52,7 @@ node ('Remote') {
  stage('Run app') {
         echo "app is ${app} and version here is ${ver}"
         sh """#!/bin/bash 
-	echo "i'm here in if, ${'$'}app is  ${'$'}ver is"
+	echo "i'm here in if, $app is  $ver is"
 	echo "hii"
         """ 
 }
