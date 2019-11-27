@@ -51,15 +51,11 @@ node ('Remote') {
  }
  stage('Run app') {
         echo "app is ${app} and version here is ${ver}"
-        sh """#!/bin/bash 
+        sh """#!/bin/bash -xe
 	echo "i'm here in if, $app is  $ver is"
         echo "end"
         """
-        sh '''
- 	if [[ `docker inspect -f '{{.State.Running}}' "$app"` == 'true' ]];then
+        sh "if [[ `docker inspect -f '{{.State.Running}}' "$app"` == 'true' ]];then docker rm -f "$app"; fi "
           
-			echo hii i came to IF end::::::::
-        fi
-        '''
 }
 }
