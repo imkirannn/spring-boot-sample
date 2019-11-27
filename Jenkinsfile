@@ -55,11 +55,12 @@ node ('Remote') {
 	echo "i'm here in if, $app is  $ver is"
         echo "end"
         """
-        sh '''#!/bin/bash
-        echo "app values coming in ``` is ${app} and "${app}""
+        sh '''
+        echo "app values coming in  is ${app} and "${app}""
 	if [[ `docker inspect -f '{{.State.Running}}' "${app}"` == 'true' ]];then 
 	docker rm -f ${app}
 	fi
+        docker run -ti -d --name $app -p 8080:8080  "$registry/$app:$ver"
 	'''
           
 }
