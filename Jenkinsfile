@@ -56,8 +56,9 @@ node ('Remote') {
         echo "end"
         """
         sh '''#!/bin/bash
+        echo "app values coming in ``` is ${app} and "${app}""
 	if [[ `docker inspect -f '{{.State.Running}}' "${app}"` == 'true' ]];then 
-	docker rm -f "${app}
+	docker rm -f ${app}
 	fi
 	'''
           
