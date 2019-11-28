@@ -10,8 +10,10 @@ node ('master') {
         checkout scm
     }
      stage('read POM versions') {
-	app = readMavenPom().getArtifactId()
-    	ver = readMavenPom().getVersion()
+//	app = readMavenPom().getArtifactId()
+//    	ver = readMavenPom().getVersion()
+    sh 'export ver="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"'
+    sh 'export app="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)"'
         echo "IMAGE: ${app}"
         echo "VERSION: ${ver}"
      }
@@ -43,6 +45,11 @@ node ('master') {
    added as a slave in jenkins
 */
 node ('Remote') {
+  stage('Checkout POM') {
+
+        checkout scm
+    }
+
  stage('Pull image') {
       echo "Pulling image: ${myapp}"
       myapp.pull() 
@@ -50,17 +57,14 @@ node ('Remote') {
 
  }
  stage('Run app') {
-        echo "app is ${app} and version here is ${ver}"
-        sh """#!/bin/bash -xe
-	echo "i'm here in if, $app is  $ver is"
-        echo "end"
-        """
         sh '''
-        echo "app values coming in  is ${app} and "${app}""
-	if [[ `docker inspect -f '{{.State.Running}}' "${app}"` == 'true' ]];then 
-	docker rm -f ${app}
-	fi
-        docker run -ti -d --name $app -p 8080:8080  "$registry/$app:$ver"
+        sh 'export ver="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"'
+        sh 'export app="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)"'
+	echo "Deploying $app with $ver as a container from $registry on DockerHub......."
+	if [  -n "$(docker ps  -aqf name=$app)" ];then
+	echo "Container $app exists , Deleting and Recreating....."
+ 	docker rm -f $app
+        docker run -ti -d --name $app -p 8080:8080  $registry/$app:$ver
 	'''
           
 }
