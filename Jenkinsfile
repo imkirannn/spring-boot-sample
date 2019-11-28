@@ -61,6 +61,7 @@ node ('Remote') {
 	//if [  -n "$(docker ps  -aqf name=$app)" ];then
 	//echo "Container $app exists , Deleting and Recreating....."
  	//docker rm -f $app
+        sh "if [  -n "$(docker ps  -aqf name=$app)" ];then docker rm -f $app ;fi"
         sh "docker run -ti -d --name $app -p 8080:8080  $registry/$app:$ver"
           
 	}
