@@ -10,10 +10,10 @@ node ('master') {
         checkout scm
     }
      stage('read POM versions') {
-//	app = readMavenPom().getArtifactId()
-//    	ver = readMavenPom().getVersion()
-    sh 'export ver="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"'
-    sh 'export app="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)"'
+	app = readMavenPom().getArtifactId()
+    	ver = readMavenPom().getVersion()
+//    sh 'export ver="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"'
+//   sh 'export app="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)"'
         echo "IMAGE: ${app}"
         echo "VERSION: ${ver}"
      }
