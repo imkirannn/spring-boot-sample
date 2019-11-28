@@ -45,13 +45,17 @@ node ('master') {
    added as a slave in jenkins
 */
 node ('Remote') {
+  withEnv(['registry=imkirann',
+               'registryCredential=docker-hub-credentials'
+               ]) {
+
 
  stage('Pull image') {
       echo "Pulling image: ${myapp}"
       myapp.pull() 
 
 
- }
+ 	}
  stage('Run app') {
 	sh "echo Deploying $app with $ver as a container from $registry on DockerHub......."
 	//if [  -n "$(docker ps  -aqf name=$app)" ];then
@@ -59,5 +63,6 @@ node ('Remote') {
  	//docker rm -f $app
         sh "docker run -ti -d --name $app -p 8080:8080  $registry/$app:$ver"
           
-}
+	}
+ }
 }
