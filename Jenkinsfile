@@ -45,10 +45,6 @@ node ('master') {
    added as a slave in jenkins
 */
 node ('Remote') {
-  stage('Checkout POM') {
-
-        checkout scm
-    }
 
  stage('Pull image') {
       echo "Pulling image: ${myapp}"
@@ -57,15 +53,11 @@ node ('Remote') {
 
  }
  stage('Run app') {
-        sh '''
-        sh 'export ver="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"'
-        sh 'export app="$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)"'
-	echo "Deploying $app with $ver as a container from $registry on DockerHub......."
-	if [  -n "$(docker ps  -aqf name=$app)" ];then
-	echo "Container $app exists , Deleting and Recreating....."
- 	docker rm -f $app
-        docker run -ti -d --name $app -p 8080:8080  $registry/$app:$ver
-	'''
+	sh "echo Deploying $app with $ver as a container from $registry on DockerHub......."
+	//if [  -n "$(docker ps  -aqf name=$app)" ];then
+	//echo "Container $app exists , Deleting and Recreating....."
+ 	//docker rm -f $app
+        sh "docker run -ti -d --name $app -p 8080:8080  $registry/$app:$ver"
           
 }
 }
