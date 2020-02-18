@@ -29,7 +29,7 @@ node ('master') {
             }
      stage('Push image') {
      	sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
-        docker.withRegistry(registry, ECRCRED) {
+        docker.withRegistry('https://768749700464.dkr.ecr.eu-west-2.amazonaws.com', 'ecr:eu-west-2:amazon-ecr-jenkins') {
         myapp.push()
         }
     }
