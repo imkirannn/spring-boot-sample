@@ -1,7 +1,7 @@
 def myapp
 node ('master') {
-    withEnv(['registry = https://768749700464.dkr.ecr.ap-south-1.amazonaws.com',
-               'ECRCRED = ecr:ap-south-1:amazon-ecr-jenkins'
+    withEnv(['registry = https://768749700464.dkr.ecr.eu-west-2.amazonaws.com',
+               'ECRCRED = ecr:eu-west-2:amazon-ecr-jenkins'
                ]) {
 
 
@@ -24,7 +24,7 @@ node ('master') {
             }
         }
      stage('Image') {
-            myapp = docker.build registry + "/" + "$app" + ":$ver"
+            myapp = docker.build registry + "/" + "cloudhands" + "/" + "$app" + ":$ver"
             
             }
      stage('Push image') {
