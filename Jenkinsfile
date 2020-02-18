@@ -24,7 +24,7 @@ node ('master') {
             }
         }
      stage('Image') {
-            myapp = docker.build registry + "/" + "cloudhands" + "/" + "$app" + ":$ver"
+            myapp = docker.build "https://768749700464.dkr.ecr.eu-west-2.amazonaws.com" + "/" + "cloudhands" + "/" + "$app" + ":$ver"
             
             }
      stage('Push image') {
