@@ -1,3 +1,4 @@
+* this is to check version history
 FROM java:8-jre-alpine
 
 EXPOSE 8080
