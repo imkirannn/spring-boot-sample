@@ -23,6 +23,7 @@ MANIFEST.MF
 _site/
 activemq-data
 bin
+Dockerfile
 build
 build.log
 dependency-reduced-pom.xml
